@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/graph/demo.iml" filepath="$PROJECT_DIR$/graph/demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
-      <module fileurl="file://$PROJECT_DIR$/library_for_project.iml" filepath="$PROJECT_DIR$/library_for_project.iml" />
       <module fileurl="file://$PROJECT_DIR$/multi.iml" filepath="$PROJECT_DIR$/multi.iml" />
-      <module fileurl="file://$PROJECT_DIR$/shopbook/shopbook.iml" filepath="$PROJECT_DIR$/shopbook/shopbook.iml" />
+      <module fileurl="file://$PROJECT_DIR$/price/price.iml" filepath="$PROJECT_DIR$/price/price.iml" />
+      <module fileurl="file://$PROJECT_DIR$/storage/storage.iml" filepath="$PROJECT_DIR$/storage/storage.iml" />
     </modules>
   </component>
 </project>
