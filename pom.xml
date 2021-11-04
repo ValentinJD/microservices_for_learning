@@ -12,15 +12,14 @@
     <artifactId>microservices</artifactId>
     <version>0.1</version>
 
-    <name>microservices</name>
-
+    <name>root</name>
     <description>Project for learning</description>
 
     <packaging>pom</packaging>
 
     <modules>
         <module>storage</module>
-        <module>price</module>
+        <module>shop</module>
         <module>library</module>
     </modules>
 
@@ -30,8 +29,6 @@
             <groupId>library</groupId>
             <version>1</version>
         </dependency>
-
-
     </dependencies>
 
     <build>

@@ -6,23 +6,23 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="price" />
         <module name="library" />
         <module name="storage" />
+        <module name="shop" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
       <module name="library" target="8" />
       <module name="library_for_project" target="1.8" />
       <module name="multi" target="1.8" />
-      <module name="price" target="1.8" />
+      <module name="shop" target="1.8" />
       <module name="storage" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="library" options="" />
-      <module name="price" options="-parameters" />
+      <module name="shop" options="-parameters" />
       <module name="storage" options="-parameters" />
     </option>
   </component>
