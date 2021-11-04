@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 import ru.shop.book.model.Price;
-import ru.shop.book.repository.PriceRepo;
+import ru.shop.book.repository.PriceRepository;
 
 
 @Component
@@ -22,7 +22,7 @@ public class AuthorListener {
     boolean init = true;
 
     @Autowired
-    PriceRepo priceRepo;
+    PriceRepository priceRepository;
 
     private void init() {
         Price price = new Price();
@@ -33,7 +33,7 @@ public class AuthorListener {
         price2.setBookId(6);
         price2.setPrice(200);
 
-        priceRepo.save(price);
-        priceRepo.save(price2);
+        priceRepository.save(price);
+        priceRepository.save(price2);
     }
 }

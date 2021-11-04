@@ -1,5 +1,21 @@
 spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/shopbook
+    driverClassName: org.postgresql.Driver
+    username: postgres
+    password: postgres
+  kafka:
+    consumer:
+      group-id: shop.1
   application:
-    name: graph
+    name: storage
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate.format_sql: true
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+
 server:
   port: 8081

@@ -1,5 +1,6 @@
 package ru.storage.project.сontroller;
 
+import org.springframework.web.servlet.DispatcherServlet;
 import ru.storage.project.model.Author;
 import ru.storage.project.model.Book;
 import ru.storage.project.model.Price;
@@ -13,11 +14,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
 import java.util.Arrays;
 import java.util.List;
 
 @RestController
-public class AuthorController {
+public class Controller extends DispatcherServlet{
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        initData();
+    }
+
+
 
     @Autowired
     AuthorRepository authorRepository;
@@ -29,54 +40,39 @@ public class AuthorController {
     @Autowired
     PriceRepository repository;
 
-    boolean init = true;
+
 
     @GetMapping("getPrice/{bookId}")
     Price getPrice(@PathVariable Integer bookId) {
-        if (init) {
-            init();
-            init = false;
-        }
+
         return repository.getByBookId(bookId);
     }
 
     @GetMapping("list")
     List<Author> getList() {
-        if (init) {
-            init();
-            init = false;
-        }
+
         return authorRepository.findAll();
     }
 
     @GetMapping("author/{id}")
     Author getAuthor(@PathVariable Long id) {
-        if (init) {
-            init();
-            init = false;
-        }
+
         return authorRepository.getAuthorById(id);
     }
 
     @GetMapping("book/all")
     List<Book> getBook() {
-        if (init) {
-            init();
-            init = false;
-        }
+
         return bookRepository.findAll();
     }
 
     @GetMapping("sheet/all")
     List<Sheet> getSheet() {
-        if (init) {
-            init();
-            init = false;
-        }
+
         return sheetRepository.findAll();
     }
 
-    void init() {
+    void initData() {
         Sheet sheet = new Sheet();
         sheet.setContent("content1");
 
