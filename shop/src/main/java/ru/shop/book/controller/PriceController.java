@@ -32,10 +32,10 @@ public class PriceController extends DispatcherServlet {
     }
 
     private void initData() {
-        Price price = Price.builder().price(100).bookId(5).build();
-        Price price2 = Price.builder().price(100).bookId(6).build();
-        Price price3 = Price.builder().price(100).bookId(12).build();
-        Price price4 = Price.builder().price(100).bookId(13).build();
+        Price price = Price.builder().price(100).bookId(2).build();
+        Price price2 = Price.builder().price(100).bookId(5).build();
+        Price price3 = Price.builder().price(100).bookId(9).build();
+        Price price4 = Price.builder().price(100).bookId(12).build();
 
         List<Price> list = Arrays.asList(price, price2, price3, price4);
 

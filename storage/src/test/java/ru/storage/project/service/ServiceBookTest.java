@@ -1,82 +1,34 @@
-package ru.storage.project.сontroller;
+package ru.storage.project.service;
 
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.DispatcherServlet;
-import ru.storage.project.dto.SearchDTO;
+
+import org.junit.Before;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ru.storage.project.model.Author;
 import ru.storage.project.model.Book;
-import ru.storage.project.model.Price;
 import ru.storage.project.model.Sheet;
 import ru.storage.project.repository.AuthorRepository;
 import ru.storage.project.repository.BookRepository;
-import ru.storage.project.repository.PriceRepository;
 import ru.storage.project.repository.SheetRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import ru.storage.project.service.ServiceBook;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import java.util.Arrays;
-import java.util.List;
-
-@RestController
-public class Controller extends DispatcherServlet {
-
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-        super.init(config);
-        initData();
-    }
+@SpringBootTest
+@RunWith(SpringJUnit4ClassRunner.class)
+public class ServiceBookTest {
 
     @Autowired
-    AuthorRepository authorRepository;
+    private AuthorRepository authorRepository;
     @Autowired
-    BookRepository bookRepository;
+    private BookRepository bookRepository;
     @Autowired
-    SheetRepository sheetRepository;
-    @Autowired
-    PriceRepository repository;
+    private SheetRepository sheetRepository;
 
-    @Autowired
-    ServiceBook serviceBook;
 
-    @GetMapping("getPrice/{bookId}")
-    Price getPrice(@PathVariable Integer bookId) {
-
-        return repository.getByBookId(bookId);
-    }
-
-    @GetMapping("list")
-    List<Author> getList() {
-
-        return authorRepository.findAll();
-    }
-
-    @GetMapping("author/{id}")
-    Author getAuthor(@PathVariable Long id) {
-
-        return authorRepository.getAuthorById(id);
-    }
-
-    @GetMapping("book/all")
-    List<Book> getBook() {
-
-        return bookRepository.findAll();
-    }
-
-    @GetMapping("sheet/all")
-    List<Sheet> getSheet() {
-
-        return sheetRepository.findAll();
-    }
-
-    @PostMapping
-    List<Book> searchBook(@RequestBody SearchDTO searchDTO) {
-        return serviceBook.search(searchDTO);
-    }
-
-    void initData() {
-
+    @Before
+    public void init() {
         Author author = new Author();
         author.setName("Пушкин А.С.");
         authorRepository.save(author);
@@ -162,4 +114,11 @@ public class Controller extends DispatcherServlet {
                 .build();
         sheetRepository.save(sheet8);
     }
+
+    @Test
+    @DisplayName("Поиск")
+    public void test() {
+        System.out.println("Nnnsdf");
+    }
+
 }

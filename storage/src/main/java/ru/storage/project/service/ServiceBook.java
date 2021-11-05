@@ -1,17 +1,25 @@
 package ru.storage.project.service;
 
+import org.springframework.data.jpa.domain.Specification;
+import ru.storage.project.dto.SearchDTO;
 import ru.storage.project.model.Author;
+import ru.storage.project.model.Book;
 import ru.storage.project.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.library.Util;
+import ru.storage.project.repository.BookRepository;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 @org.springframework.stereotype.Service
-public class Service {
+public class ServiceBook {
 
     @Autowired
     public AuthorRepository authorRepository;
+
+    @Autowired
+    private BookRepository bookRepository;
 
     @Autowired
     EntityManager entityManager;
@@ -30,5 +38,8 @@ public class Service {
     }
 
 
-
+    public List<Book> search(SearchDTO searchDTO) {
+        Specification<Book> bookSpecification = SpecificationUtil.findByFieldName("nameBook", searchDTO.getNameBook());
+        return bookRepository.findAll(bookSpecification);
+    }
 }

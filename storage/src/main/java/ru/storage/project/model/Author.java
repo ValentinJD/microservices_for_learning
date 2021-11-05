@@ -1,6 +1,9 @@
 package ru.storage.project.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
@@ -25,7 +28,9 @@ import java.util.List;
                 @NamedAttributeNode(value = "book")
         })*/
 
-
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Entity
 @Table(name = "author")
