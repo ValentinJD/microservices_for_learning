@@ -7,8 +7,7 @@ public class SpecificationUtil {
 
     public static Specification<Book> findByFieldName(String value, String field) {
         return ((root, query, criteriaBuilder) ->
-                criteriaBuilder.like(root.get(field), "%" + value + "%")
-                );
+                criteriaBuilder.like(root.get(field), "%" + value + "%"));
     }
 
 }

@@ -33,13 +33,13 @@ public class ServiceBook {
         TypedQuery<Author> typedQuery = entityManager.createQuery(criteriaQuery);
         typedQuery.setHint("javax.persistence.loadgraph", entityGraph);
         return typedQuery.getSingleResult();*/
-        Util.addSmile("ooo");
+//        Util.addSmile("ooo");
         return null;
     }
 
 
     public List<Book> search(SearchDTO searchDTO) {
-        Specification<Book> bookSpecification = SpecificationUtil.findByFieldName("nameBook", searchDTO.getNameBook());
+        Specification<Book> bookSpecification = SpecificationUtil.findByFieldName(searchDTO.getNameBook(),"nameBook");
         return bookRepository.findAll(bookSpecification);
     }
 }

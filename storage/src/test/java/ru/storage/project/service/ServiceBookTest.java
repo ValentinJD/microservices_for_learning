@@ -1,19 +1,24 @@
 package ru.storage.project.service;
 
-
+import org.assertj.core.matcher.AssertionMatcher;
 import org.junit.Before;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
+import ru.storage.project.dto.SearchDTO;
 import ru.storage.project.model.Author;
 import ru.storage.project.model.Book;
 import ru.storage.project.model.Sheet;
 import ru.storage.project.repository.AuthorRepository;
 import ru.storage.project.repository.BookRepository;
 import ru.storage.project.repository.SheetRepository;
+
+import java.util.List;
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -25,6 +30,8 @@ public class ServiceBookTest {
     private BookRepository bookRepository;
     @Autowired
     private SheetRepository sheetRepository;
+    @Autowired
+    ServiceBook serviceBook;
 
 
     @Before
@@ -117,8 +124,12 @@ public class ServiceBookTest {
 
     @Test
     @DisplayName("Поиск")
+    @Transactional
     public void test() {
-        System.out.println("Nnnsdf");
+        SearchDTO searchDTO = new SearchDTO();
+        searchDTO.setNameBook("ВОЙНА");
+        List<Book> search = serviceBook.search(searchDTO);
+        Assertions.assertEquals(1, search.size());
     }
 
 }
