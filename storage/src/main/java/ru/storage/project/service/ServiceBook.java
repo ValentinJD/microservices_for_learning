@@ -57,6 +57,7 @@ public class ServiceBook {
 
     public Page<Book> searchAndSort(SearchDTO searchDTO) {
 
+
         Specification<Book> byFieldName = SpecificationUtil.findByFieldName(searchDTO.getNameBook(), "nameBook");
 
         Specification<Book> byAuthorNameOrNameBook = SpecificationUtil.addSearchByAuthorName(searchDTO.getAuthorName(), byFieldName);
@@ -66,6 +67,11 @@ public class ServiceBook {
         sort = SortingUtil.sortDescending(searchDTO.isAsc(), sort);
 
         PageRequest pageRequest = PageRequest.of(0, 10, sort);
+
+
+        if (searchDTO.getAuthorName() == null && searchDTO.getNameBook() == null) {
+            return bookRepository.findAll(pageRequest);
+        }
 
         return bookRepository.findAll(byAuthorNameOrNameBook, pageRequest);
     }
