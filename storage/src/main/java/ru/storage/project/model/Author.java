@@ -45,4 +45,9 @@ public class Author {
 
     @OneToMany(fetch = FetchType.EAGER)
     private List<Book> book;
+
+/*    @Override
+    public int compareTo(Object o) {
+        return name.compareTo(((Author)o).getName());
+    }*/
 }

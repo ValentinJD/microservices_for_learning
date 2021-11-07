@@ -1,14 +1,12 @@
 package ru.storage.project.service;
 
-import org.assertj.core.matcher.AssertionMatcher;
-import org.junit.Before;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.transaction.annotation.Transactional;
 import ru.storage.project.dto.SearchDTO;
 import ru.storage.project.model.Author;
@@ -21,7 +19,6 @@ import ru.storage.project.repository.SheetRepository;
 import java.util.List;
 
 @SpringBootTest
-@RunWith(SpringJUnit4ClassRunner.class)
 public class ServiceBookTest {
 
     @Autowired
@@ -33,14 +30,24 @@ public class ServiceBookTest {
     @Autowired
     ServiceBook serviceBook;
 
+    private Book book;
+    private Book book2;
+    private Book book3;
+    private Book book4;
 
-    @Before
+
+/*    @BeforeEach
+    public void clear() {
+
+    }*/
+
+    @BeforeEach
     public void init() {
         Author author = new Author();
-        author.setName("Пушкин А.С.");
+        author.setName("Ббб");
         authorRepository.save(author);
 
-        Book book = Book.builder()
+        book = Book.builder()
                 .nameBook("Евгений Онегин")
                 .author(author)
                 .build();
@@ -60,7 +67,7 @@ public class ServiceBookTest {
         sheetRepository.save(sheet2);
 
 
-        Book book2 =  Book.builder()
+        book2 = Book.builder()
                 .nameBook("Барышня-Крестьянка")
                 .author(author)
                 .build();
@@ -80,12 +87,12 @@ public class ServiceBookTest {
         sheetRepository.save(sheet4);
 
         Author author2 = Author.builder()
-                .name("Толстой Л.Н.")
+                .name("Ааа")
                 .build();
 
         authorRepository.save(author2);
 
-        Book book3 =  Book.builder()
+        book3 = Book.builder()
                 .nameBook("АННА КАРЕНИНА")
                 .author(author2)
                 .build();
@@ -103,7 +110,7 @@ public class ServiceBookTest {
                 .build();
         sheetRepository.save(sheet6);
 
-        Book book4 =  Book.builder()
+        book4 = Book.builder()
                 .nameBook("ВОЙНА И МИР. ТОМ 1")
                 .author(author2)
                 .build();
@@ -123,13 +130,67 @@ public class ServiceBookTest {
     }
 
     @Test
-    @DisplayName("Поиск")
+    @DisplayName("Поиск по имени книги")
     @Transactional
     public void test() {
         SearchDTO searchDTO = new SearchDTO();
         searchDTO.setNameBook("ВОЙНА");
         List<Book> search = serviceBook.search(searchDTO);
         Assertions.assertEquals(1, search.size());
+    }
+
+    @Test
+    @DisplayName("Поиск по имени книги с сортировкой Asc")
+    @Transactional
+    public void test2() {
+        SearchDTO searchDTO = new SearchDTO();
+        searchDTO.setNameBook("");
+
+        List<Book> search = serviceBook.searchAndSort(searchDTO, true);
+
+        Assertions.assertEquals(4, search.size());
+        Assertions.assertEquals(book.getId(), search.get(0).getId());
+    }
+
+    @Test
+    @DisplayName("Поиск по имени книги с сортировкой Desc")
+    @Transactional
+    public void test3() {
+        SearchDTO searchDTO = new SearchDTO();
+        searchDTO.setNameBook("");
+
+        List<Book> search = serviceBook.searchAndSort(searchDTO, false);
+
+        Assertions.assertEquals(4, search.size());
+        Assertions.assertEquals(book4.getId(), search.get(0).getId());
+    }
+
+    @Test
+    @DisplayName("Поиск по имени книги с сортировкой Desc")
+    @Transactional
+    public void test4() {
+        SearchDTO searchDTO = new SearchDTO();
+        searchDTO.setNameBook("");
+
+        List<Book> search = serviceBook.searchAndSort(searchDTO, false);
+
+        Assertions.assertEquals(4, search.size());
+        Assertions.assertEquals(book4.getId(), search.get(0).getId());
+    }
+
+    @Test
+    @DisplayName("Поиск по имени книги и имени автору с сортировкой Asc по автору")
+    public void test5() {
+        SearchDTO searchDTO = new SearchDTO();
+        searchDTO.setNameBook("Евгений");
+        searchDTO.setAuthorName("Бб");
+        searchDTO.setAsc(true);
+
+        Page<Book> search = serviceBook.searchAndSort(searchDTO);
+        List<Book> content = search.getContent();
+        Assertions.assertEquals(1, content.size());
+        Assertions.assertEquals(book.getNameBook(), content.get(0).getNameBook());
+        Assertions.assertEquals(book.getAuthor().getName(), content.get(0).getAuthor().getName());
     }
 
 }

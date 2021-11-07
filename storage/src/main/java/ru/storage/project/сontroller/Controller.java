@@ -1,5 +1,6 @@
 package ru.storage.project.сontroller;
 
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.DispatcherServlet;
 import ru.storage.project.dto.SearchDTO;
@@ -71,8 +72,8 @@ public class Controller extends DispatcherServlet {
     }
 
     @PostMapping
-    List<Book> searchBook(@RequestBody SearchDTO searchDTO) {
-        return serviceBook.search(searchDTO);
+    Page<Book> searchBook(@RequestBody SearchDTO searchDTO) {
+        return serviceBook.searchAndSort(searchDTO);
     }
 
     void initData() {

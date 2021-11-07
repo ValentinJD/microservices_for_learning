@@ -24,10 +24,10 @@ public class Book {
 
     private String nameBook;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Author author;
 
     @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY)
-    List<Sheet> sheet;
+    @OneToMany(fetch = FetchType.EAGER)
+    List<Sheet> sheets;
 }

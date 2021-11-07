@@ -79,9 +79,9 @@ class StorageApplicationTest {
 
 //        book2.setAuthor(author);
 
-        book.setSheet(Arrays.asList(sheet, sheet2));
+//        book.setSheet(Arrays.asList(sheet, sheet2));
 
-        book2.setSheet(Arrays.asList(sheet3, sheet4));
+//        book2.setSheet(Arrays.asList(sheet3, sheet4));
 
         bookRepository.save(book);
 
