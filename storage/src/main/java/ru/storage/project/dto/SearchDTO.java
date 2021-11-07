@@ -1,9 +1,14 @@
 package ru.storage.project.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
+@Builder
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
 public class SearchDTO {
 
@@ -11,9 +16,12 @@ public class SearchDTO {
 
     private String authorName;
 
-    private boolean asc;
+    @Builder.Default
+    private boolean asc = true;
 
-    private int page;
+    @Builder.Default
+    private int page = 0;
 
-    private int size;
+    @Builder.Default
+    private int size = 10;
 }

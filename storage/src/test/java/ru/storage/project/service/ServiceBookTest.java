@@ -34,6 +34,8 @@ public class ServiceBookTest {
     private Book book2;
     private Book book3;
     private Book book4;
+    private Book book5;
+    private Book book6;
 
 
 /*    @BeforeEach
@@ -44,7 +46,7 @@ public class ServiceBookTest {
     @BeforeEach
     public void init() {
         Author author = new Author();
-        author.setName("Ббб");
+        author.setName("Пушкин А.С.");
         authorRepository.save(author);
 
         book = Book.builder()
@@ -87,7 +89,7 @@ public class ServiceBookTest {
         sheetRepository.save(sheet4);
 
         Author author2 = Author.builder()
-                .name("Ааа")
+                .name("Толстой Л.Н.")
                 .build();
 
         authorRepository.save(author2);
@@ -127,6 +129,29 @@ public class ServiceBookTest {
                 .book(book4)
                 .build();
         sheetRepository.save(sheet8);
+
+        Author author3 = Author.builder()
+                .name("Есенин С.А.")
+                .build();
+        authorRepository.save(author3);
+
+        Book book5 = Book.builder()
+                .nameBook("Белая черемуха под моим окном")
+                .author(author3)
+                .build();
+        bookRepository.save(book5);
+
+        Author author4 = Author.builder()
+                .name("Лермонтов М.Ю.")
+                .build();
+
+        authorRepository.save(author4);
+
+        Book book6 = Book.builder()
+                .nameBook("Герой нашего времени")
+                .author(author4)
+                .build();
+        bookRepository.save(book6);
     }
 
     @Test
@@ -179,16 +204,16 @@ public class ServiceBookTest {
     }
 
     @Test
-    @DisplayName("Поиск по имени книги и имени автору с сортировкой Asc по автору")
+    @DisplayName("Поиск книг по автору с сортировкой Asc по автору")
     public void test5() {
         SearchDTO searchDTO = new SearchDTO();
-        searchDTO.setNameBook("Евгений");
-        searchDTO.setAuthorName("Бб");
+//        searchDTO.setNameBook("Евгений");
+        searchDTO.setAuthorName("Пушкин А.С.");
         searchDTO.setAsc(true);
 
         Page<Book> search = serviceBook.searchAndSort(searchDTO);
         List<Book> content = search.getContent();
-        Assertions.assertEquals(1, content.size());
+        Assertions.assertEquals(2, content.size());
         Assertions.assertEquals(book.getNameBook(), content.get(0).getNameBook());
         Assertions.assertEquals(book.getAuthor().getName(), content.get(0).getAuthor().getName());
     }
