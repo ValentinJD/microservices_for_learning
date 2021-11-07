@@ -135,7 +135,7 @@ public class ServiceBookTest {
                 .build();
         authorRepository.save(author3);
 
-        Book book5 = Book.builder()
+        book5 = Book.builder()
                 .nameBook("Белая черемуха под моим окном")
                 .author(author3)
                 .build();
@@ -147,7 +147,7 @@ public class ServiceBookTest {
 
         authorRepository.save(author4);
 
-        Book book6 = Book.builder()
+        book6 = Book.builder()
                 .nameBook("Герой нашего времени")
                 .author(author4)
                 .build();
@@ -160,54 +160,52 @@ public class ServiceBookTest {
     public void test() {
         SearchDTO searchDTO = new SearchDTO();
         searchDTO.setNameBook("ВОЙНА");
-        List<Book> search = serviceBook.search(searchDTO);
+        List<Book> search = serviceBook.searchAndSort(searchDTO).getContent();
         Assertions.assertEquals(1, search.size());
     }
 
     @Test
-    @DisplayName("Поиск по имени книги с сортировкой Asc")
+    @DisplayName("Поиск по автору книги с сортировкой по ИД книги Asc")
     @Transactional
     public void test2() {
         SearchDTO searchDTO = new SearchDTO();
-        searchDTO.setNameBook("");
+        searchDTO.setAuthorName("Пушкин");
 
-        List<Book> search = serviceBook.searchAndSort(searchDTO, true);
+        List<Book> search = serviceBook.searchAndSort(searchDTO).getContent();
 
-        Assertions.assertEquals(4, search.size());
+        Assertions.assertEquals(2, search.size());
         Assertions.assertEquals(book.getId(), search.get(0).getId());
     }
 
     @Test
-    @DisplayName("Поиск по имени книги с сортировкой Desc")
+    @DisplayName("Поиск по автору книги с сортировкой Desc")
     @Transactional
     public void test3() {
         SearchDTO searchDTO = new SearchDTO();
-        searchDTO.setNameBook("");
+        searchDTO.setAuthorName("Пушкин");
 
-        List<Book> search = serviceBook.searchAndSort(searchDTO, false);
+        List<Book> search = serviceBook.searchAndSort(searchDTO).getContent();
 
-        Assertions.assertEquals(4, search.size());
-        Assertions.assertEquals(book4.getId(), search.get(0).getId());
+        Assertions.assertEquals(2, search.size());
+        Assertions.assertEquals(book.getId(), search.get(0).getId());
     }
 
     @Test
-    @DisplayName("Поиск по имени книги с сортировкой Desc")
+    @DisplayName("Поиск без параметров")
     @Transactional
     public void test4() {
         SearchDTO searchDTO = new SearchDTO();
-        searchDTO.setNameBook("");
 
-        List<Book> search = serviceBook.searchAndSort(searchDTO, false);
+        List<Book> search = serviceBook.searchAndSort(searchDTO).getContent();
 
-        Assertions.assertEquals(4, search.size());
-        Assertions.assertEquals(book4.getId(), search.get(0).getId());
+        Assertions.assertEquals(6, search.size());
     }
 
     @Test
     @DisplayName("Поиск книг по автору с сортировкой Asc по автору")
+    @Transactional
     public void test5() {
         SearchDTO searchDTO = new SearchDTO();
-//        searchDTO.setNameBook("Евгений");
         searchDTO.setAuthorName("Пушкин А.С.");
         searchDTO.setAsc(true);
 
@@ -217,5 +215,4 @@ public class ServiceBookTest {
         Assertions.assertEquals(book.getNameBook(), content.get(0).getNameBook());
         Assertions.assertEquals(book.getAuthor().getName(), content.get(0).getAuthor().getName());
     }
-
 }

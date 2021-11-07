@@ -45,6 +45,7 @@ public class ServiceBook {
         return bookRepository.findAll(bookSpecification);
     }
 
+    @Deprecated
     public List<Book> searchAndSort(SearchDTO searchDTO, boolean asc) {
         Specification<Book> bookSpecification = SpecificationUtil.findByFieldName(searchDTO.getNameBook(),"nameBook");
         Sort sort = SortingUtil.getSortByBookId();
