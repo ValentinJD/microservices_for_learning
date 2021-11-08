@@ -1,5 +1,6 @@
 package ru.storage.project.service;
 
+import com.querydsl.core.types.dsl.BooleanExpression;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -7,6 +8,7 @@ import org.springframework.data.jpa.domain.Specification;
 import ru.storage.project.dto.SearchDTO;
 import ru.storage.project.model.Author;
 import ru.storage.project.model.Book;
+import ru.storage.project.model.QBook;
 import ru.storage.project.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.storage.project.repository.BookRepository;
@@ -78,4 +80,16 @@ public class ServiceBook {
     }
 
 
+    public Page<Book> searchAndSortQDSL(SearchDTO searchDTO) {
+        QBook qBook = QBook.book;
+        BooleanExpression like = qBook.author.name.like("%" + searchDTO.getAuthorName() + "%");
+
+        Sort sort = SortingUtil.getSortByAuthorName();
+
+        sort = SortingUtil.sortDescending(searchDTO.isAsc(), sort);
+
+        PageRequest pageRequest = PageRequest.of(0, 10, sort);
+
+        return bookRepository.findAll(like, pageRequest);
+    }
 }
