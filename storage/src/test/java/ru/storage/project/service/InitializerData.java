@@ -19,7 +19,7 @@ public class InitializerData implements Initializer{
     @Autowired
     private SheetRepository sheetRepository;
     @Autowired
-    ServiceBook serviceBook;
+    private ServiceBook serviceBook;
 
     public AuthorRepository getAuthorRepository() {
         return authorRepository;
@@ -177,6 +177,13 @@ public class InitializerData implements Initializer{
                 .author(author4)
                 .build();
         bookRepository.save(book6);
+    }
+
+    @Override
+    public void clearData() {
+        sheetRepository.deleteAll();
+        bookRepository.deleteAll();
+        authorRepository.deleteAll();
     }
 
 

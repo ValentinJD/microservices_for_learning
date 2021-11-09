@@ -1,9 +1,6 @@
 package ru.storage.project.service;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
@@ -25,13 +22,20 @@ public class ServiceBookTest  {
         initializerData.init();
     }
 
+    @AfterEach
+    public void clear() {
+        initializerData.clearData();
+    }
+
+
+
     @Test
     @DisplayName("Поиск по имени книги")
     @Transactional
     public void test() {
         SearchDTO searchDTO = new SearchDTO();
         searchDTO.setNameBook("ВОЙНА");
-        List<Book> search = initializerData.serviceBook.searchAndSort(searchDTO).getContent();
+        List<Book> search = initializerData.getServiceBook().searchAndSort(searchDTO).getContent();
         Assertions.assertEquals(1, search.size());
     }
 
@@ -55,7 +59,7 @@ public class ServiceBookTest  {
         SearchDTO searchDTO = new SearchDTO();
         searchDTO.setAuthorName("Пушкин");
 
-        List<Book> search = initializerData.serviceBook.searchAndSort(searchDTO).getContent();
+        List<Book> search = initializerData.getServiceBook().searchAndSort(searchDTO).getContent();
 
         Assertions.assertEquals(2, search.size());
         Assertions.assertEquals(initializerData.book.getId(), search.get(0).getId());
@@ -67,7 +71,7 @@ public class ServiceBookTest  {
     public void test4() {
         SearchDTO searchDTO = new SearchDTO();
 
-        List<Book> search = initializerData.serviceBook.searchAndSort(searchDTO).getContent();
+        List<Book> search = initializerData.getServiceBook().searchAndSort(searchDTO).getContent();
 
         Assertions.assertEquals(6, search.size());
     }
@@ -80,7 +84,7 @@ public class ServiceBookTest  {
         searchDTO.setAuthorName("Пушкин А.С.");
         searchDTO.setAsc(true);
 
-        Page<Book> search = initializerData.serviceBook.searchAndSort(searchDTO);
+        Page<Book> search = initializerData.getServiceBook().searchAndSort(searchDTO);
         List<Book> content = search.getContent();
         Assertions.assertEquals(2, content.size());
         Assertions.assertEquals(initializerData.book.getNameBook(), content.get(0).getNameBook());
@@ -95,7 +99,7 @@ public class ServiceBookTest  {
         searchDTO.setAuthorName("Пушкин А.С.");
         searchDTO.setAsc(true);
 
-        Page<Book> search = initializerData.serviceBook.searchAndSortQDSL(searchDTO);
+        Page<Book> search = initializerData.getServiceBook().searchAndSortQDSL(searchDTO);
         List<Book> content = search.getContent();
         Assertions.assertEquals(2, content.size());
         Assertions.assertEquals(initializerData.book.getNameBook(), content.get(0).getNameBook());
