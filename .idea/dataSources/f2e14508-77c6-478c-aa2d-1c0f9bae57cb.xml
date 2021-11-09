@@ -983,6 +983,7 @@ UC/10
     </sequence>
     <table id="33" parent="20" name="author">
       <ObjectId>244459</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>postgres</Owner>
       <StateNumber>117117</StateNumber>
     </table>

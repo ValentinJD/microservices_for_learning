@@ -9,6 +9,10 @@ import ru.storage.project.repository.AuthorRepository;
 import ru.storage.project.repository.BookRepository;
 import ru.storage.project.repository.SheetRepository;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 @Component
 public class InitializerData implements Initializer{
 
@@ -93,6 +97,12 @@ public class InitializerData implements Initializer{
                 .build();
         sheetRepository.save(sheet2);
 
+        List<Sheet> list = new ArrayList<>();
+        list.add(sheet1);
+        list.add(sheet2);
+        book.setSheets(list);
+        bookRepository.save(book);
+
 
         book2 = Book.builder()
                 .nameBook("Барышня-Крестьянка")
@@ -112,6 +122,19 @@ public class InitializerData implements Initializer{
                 .book(book2)
                 .build();
         sheetRepository.save(sheet4);
+
+        List<Sheet> list2 = new ArrayList<>();
+        list2.add(sheet3);
+        list2.add(sheet4);
+        book2.setSheets(list2);
+        bookRepository.save(book2);
+
+
+        List<Book> listBook = new ArrayList<>();
+        listBook.add(book);
+        listBook.add(book2);
+        author.setBook(listBook);
+        authorRepository.save(author);
 
         Author author2 = Author.builder()
                 .name("Толстой Л.Н.")
@@ -137,6 +160,12 @@ public class InitializerData implements Initializer{
                 .build();
         sheetRepository.save(sheet6);
 
+        List<Sheet> list3 = new ArrayList<>();
+        list3.add(sheet5);
+        list3.add(sheet6);
+        book3.setSheets(list3);
+        bookRepository.save(book3);
+
         book4 = Book.builder()
                 .nameBook("ВОЙНА И МИР. ТОМ 1")
                 .author(author2)
@@ -155,6 +184,18 @@ public class InitializerData implements Initializer{
                 .build();
         sheetRepository.save(sheet8);
 
+        List<Sheet> list4 = new ArrayList<>();
+        list4.add(sheet7);
+        list4.add(sheet8);
+        book4.setSheets(list4);
+        bookRepository.save(book4);
+
+        List<Book> listBook3 = new ArrayList<>();
+        listBook3.add(book3);
+        listBook3.add(book4);
+        author2.setBook(listBook3);
+        authorRepository.save(author2);
+
         Author author3 = Author.builder()
                 .name("Есенин С.А.")
                 .build();
@@ -165,6 +206,23 @@ public class InitializerData implements Initializer{
                 .author(author3)
                 .build();
         bookRepository.save(book5);
+
+        Sheet sheet9 = Sheet.builder()
+                .content("Страница №9")
+                .book(book5)
+                .build();
+        sheetRepository.save(sheet9);
+
+        List<Sheet> list5 = new ArrayList<>();
+        list5.add(sheet9);
+
+        book5.setSheets(list5);
+        bookRepository.save(book5);
+
+        List<Book> listbook4 = new ArrayList<>();
+        listbook4.add(book5);
+        author3.setBook(listbook4);
+        authorRepository.save(author3);
 
         Author author4 = Author.builder()
                 .name("Лермонтов М.Ю.")
@@ -177,12 +235,28 @@ public class InitializerData implements Initializer{
                 .author(author4)
                 .build();
         bookRepository.save(book6);
+
+        Sheet sheet10 = Sheet.builder()
+                .content("Страница №10")
+                .book(book6)
+                .build();
+        sheetRepository.save(sheet10);
+
+        List<Sheet> sheets = new ArrayList<>();
+        sheets.add(sheet10);
+        book6.setSheets(sheets);
+        bookRepository.save(book6);
+
+        List<Book> listbook5 = new ArrayList<>();
+        listbook5.add(book6);
+        author4.setBook(listbook5);
+        authorRepository.save(author4);
     }
 
     @Override
     public void clearData() {
-        sheetRepository.deleteAll();
-        bookRepository.deleteAll();
+//        sheetRepository.deleteAll();
+//        bookRepository.deleteAll();
         authorRepository.deleteAll();
     }
 

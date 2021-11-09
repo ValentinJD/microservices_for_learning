@@ -31,7 +31,7 @@ public class ServiceBookTest  {
 
     @Test
     @DisplayName("Поиск по имени книги")
-    @Transactional
+
     public void test() {
         SearchDTO searchDTO = new SearchDTO();
         searchDTO.setNameBook("ВОЙНА");
@@ -41,7 +41,7 @@ public class ServiceBookTest  {
 
     @Test
     @DisplayName("Поиск по автору книги с сортировкой по ИД книги Asc")
-    @Transactional
+
     public void test2() {
         SearchDTO searchDTO = new SearchDTO();
         searchDTO.setAuthorName("Пушкин");
@@ -54,7 +54,7 @@ public class ServiceBookTest  {
 
     @Test
     @DisplayName("Поиск по автору книги с сортировкой Desc")
-    @Transactional
+
     public void test3() {
         SearchDTO searchDTO = new SearchDTO();
         searchDTO.setAuthorName("Пушкин");
@@ -67,7 +67,7 @@ public class ServiceBookTest  {
 
     @Test
     @DisplayName("Поиск без параметров")
-    @Transactional
+
     public void test4() {
         SearchDTO searchDTO = new SearchDTO();
 
@@ -78,7 +78,7 @@ public class ServiceBookTest  {
 
     @Test
     @DisplayName("Поиск книг по автору с сортировкой Asc по автору")
-    @Transactional
+
     public void test5() {
         SearchDTO searchDTO = new SearchDTO();
         searchDTO.setAuthorName("Пушкин А.С.");
@@ -93,7 +93,7 @@ public class ServiceBookTest  {
 
     @Test
     @DisplayName("Поиск книг по автору с сортировкой Asc по автору QDSL")
-    @Transactional
+
     public void test6() {
         SearchDTO searchDTO = new SearchDTO();
         searchDTO.setAuthorName("Пушкин А.С.");

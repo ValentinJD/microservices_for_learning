@@ -3,12 +3,15 @@ package ru.storage.project.repository;
 
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import ru.storage.project.model.Author;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+import ru.storage.project.model.Book;
+
 import java.util.Optional;
 
-public interface AuthorRepository extends JpaRepository<Author, Long>
+public interface AuthorRepository extends JpaRepository<Author, Long>, JpaSpecificationExecutor<Author>
 , QuerydslPredicateExecutor<Author> {
 
 //    @Transactional
