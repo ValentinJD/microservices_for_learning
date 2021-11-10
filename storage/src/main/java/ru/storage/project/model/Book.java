@@ -28,6 +28,6 @@ public class Book {
     private Author author;
 
     @JsonIgnore
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     List<Sheet> sheets;
 }

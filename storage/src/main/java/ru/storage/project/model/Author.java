@@ -43,7 +43,7 @@ public class Author {
     private String name;
 
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Book> book;
 
 /*    @Override
