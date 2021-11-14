@@ -24,6 +24,8 @@ public class Book {
 
     private String nameBook;
 
+    private String humanReadableId;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private Author author;
 

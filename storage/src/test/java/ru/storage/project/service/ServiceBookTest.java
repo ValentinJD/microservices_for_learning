@@ -4,9 +4,9 @@ import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
-import org.springframework.transaction.annotation.Transactional;
 import ru.storage.project.dto.SearchDTO;
 import ru.storage.project.model.Book;
+import ru.storage.project.util.InitializerData;
 
 import java.util.List;
 
@@ -49,7 +49,7 @@ public class ServiceBookTest  {
         List<Book> search = serviceBook.searchAndSort(searchDTO).getContent();
 
         Assertions.assertEquals(2, search.size());
-        Assertions.assertEquals(initializerData.book.getId(), search.get(0).getId());
+        Assertions.assertEquals(initializerData.getBook().getId(), search.get(0).getId());
     }
 
     @Test
@@ -61,7 +61,7 @@ public class ServiceBookTest  {
         List<Book> search = serviceBook.searchAndSort(searchDTO).getContent();
 
         Assertions.assertEquals(2, search.size());
-        Assertions.assertEquals(initializerData.book.getId(), search.get(0).getId());
+        Assertions.assertEquals(initializerData.getBook().getId(), search.get(0).getId());
     }
 
     @Test
@@ -84,7 +84,7 @@ public class ServiceBookTest  {
         Page<Book> search = serviceBook.searchAndSort(searchDTO);
         List<Book> content = search.getContent();
         Assertions.assertEquals(2, content.size());
-        Assertions.assertEquals(initializerData.book.getNameBook(), content.get(0).getNameBook());
+        Assertions.assertEquals(initializerData.getBook().getNameBook(), content.get(0).getNameBook());
 //        Assertions.assertEquals(initializerData.book.getAuthor().getName(), content.get(0).getAuthor().getName());
     }
 
@@ -98,7 +98,7 @@ public class ServiceBookTest  {
         Page<Book> search = serviceBook.searchAndSortQDSL(searchDTO);
         List<Book> content = search.getContent();
         Assertions.assertEquals(2, content.size());
-        Assertions.assertEquals(initializerData.book.getNameBook(), content.get(0).getNameBook());
+        Assertions.assertEquals(initializerData.getBook().getNameBook(), content.get(0).getNameBook());
 //        Assertions.assertEquals(initializerData.book.getAuthor().getName(), content.get(0).getAuthor().getName());
     }
 }

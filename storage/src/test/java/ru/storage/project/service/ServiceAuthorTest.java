@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import ru.storage.project.model.Author;
 import ru.storage.project.model.QAuthor;
+import ru.storage.project.util.InitializerData;
 
 import java.util.List;
 

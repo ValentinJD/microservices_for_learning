@@ -1,4 +1,4 @@
-package ru.storage.project.service;
+package ru.storage.project.util;
 
 public interface Initializer {
 

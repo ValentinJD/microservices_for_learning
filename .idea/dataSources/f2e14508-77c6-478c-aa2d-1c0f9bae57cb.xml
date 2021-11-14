@@ -995,6 +995,7 @@ UC/10
     </table>
     <table id="35" parent="20" name="book">
       <ObjectId>244467</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>postgres</Owner>
       <StateNumber>117116</StateNumber>
     </table>

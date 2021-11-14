@@ -1,7 +1,8 @@
-package ru.storage.project.service;
+package ru.storage.project.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ru.storage.project.util.Initializer;
 import ru.storage.project.model.Author;
 import ru.storage.project.model.Book;
 import ru.storage.project.model.Sheet;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class InitializerData implements Initializer{
+public class InitializerData implements Initializer {
 
     @Autowired
     private AuthorRepository authorRepository;
@@ -75,6 +76,7 @@ public class InitializerData implements Initializer{
         book = Book.builder()
                 .nameBook("Евгений Онегин")
                 .author(author)
+                .humanReadableId(Generator.get())
                 .build();
 
         Sheet sheet1 = Sheet.builder()
@@ -95,6 +97,7 @@ public class InitializerData implements Initializer{
         book2 = Book.builder()
                 .nameBook("Барышня-Крестьянка")
                 .author(author)
+                .humanReadableId(Generator.get())
                 .build();
 
         Sheet sheet3 = Sheet.builder()
@@ -126,6 +129,7 @@ public class InitializerData implements Initializer{
         book3 = Book.builder()
                 .nameBook("АННА КАРЕНИНА")
                 .author(author2)
+                .humanReadableId(Generator.get())
                 .build();
 
         Sheet sheet5 = Sheet.builder()
@@ -146,6 +150,7 @@ public class InitializerData implements Initializer{
         book4 = Book.builder()
                 .nameBook("ВОЙНА И МИР. ТОМ 1")
                 .author(author2)
+                .humanReadableId(Generator.get())
                 .build();
 
         Sheet sheet7 = Sheet.builder()
@@ -177,6 +182,7 @@ public class InitializerData implements Initializer{
         book5 = Book.builder()
                 .nameBook("Белая черемуха под моим окном")
                 .author(author3)
+                .humanReadableId(Generator.get())
                 .build();
 
         Sheet sheet9 = Sheet.builder()
@@ -202,6 +208,7 @@ public class InitializerData implements Initializer{
         book6 = Book.builder()
                 .nameBook("Герой нашего времени")
                 .author(author4)
+                .humanReadableId(Generator.get())
                 .build();
 
         Sheet sheet10 = Sheet.builder()
