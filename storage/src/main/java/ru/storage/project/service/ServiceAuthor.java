@@ -9,6 +9,7 @@ import ru.storage.project.repository.AuthorRepository;
 
 import javax.persistence.criteria.Fetch;
 import javax.persistence.criteria.JoinType;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,9 +23,10 @@ public class ServiceAuthor {
         return authorRepository.findAll(hasName);
     }
 
-    public Optional<Author> getAuthorWithBook() {
+    public List<Author> getAuthorWithBook() {
         Specification<Author> byFieldName = findByFieldName("Пушкин", "name");
-        return authorRepository.findOne(byFieldName);
+
+        return authorRepository.findAll(byFieldName);
     }
 
     public Specification<Author> findByFieldName(String value, String field) {

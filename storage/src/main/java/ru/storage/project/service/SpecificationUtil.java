@@ -14,8 +14,9 @@ public class SpecificationUtil {
 
     public static Specification<Book> addSearchByAuthorName(String authorName, Specification<Book> spec) {
         return spec.or(  (root, query, cb) -> {
-            Join<Book, Author> join = root.join(Book_.author);
-            return cb.like(join.get(Author_.name), "%" + authorName + "%");
+            Join<Book, Author> join = root.join(Book_.author.getName());
+//            join.fetch("name");
+            return cb.like(join.get("name"), "%" + authorName + "%");
         }) ;
     }
 /*

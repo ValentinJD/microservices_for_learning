@@ -31,5 +31,8 @@ public interface AuthorRepository extends JpaRepository<Author, Long>, JpaSpecif
     @Query("SELECT a FROM Author a where a.id=:id")
     Optional<Author> find(Long id);
 
+ /*   @EntityGraph(attributePaths = {"book"})
+    Author getAuthorWithBook(Long id);*/
+
 
 }

@@ -4,13 +4,10 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 import ru.storage.project.model.Author;
 import ru.storage.project.model.QAuthor;
-import ru.storage.project.repository.AuthorRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @SpringBootTest
 public class ServiceAuthorTest {
@@ -20,8 +17,6 @@ public class ServiceAuthorTest {
 
     @Autowired
     ServiceAuthor serviceAuthor;
-    @Autowired
-    AuthorRepository authorRepository;
 
     @BeforeEach
     private void init() {
@@ -48,11 +43,11 @@ public class ServiceAuthorTest {
     @DisplayName("Найти автора по имени c книгами и контентом")
     public void test2() {
 
-     Optional<Author> author = serviceAuthor.getAuthorWithBook();
+     List<Author> author = serviceAuthor.getAuthorWithBook();
 
-        Assertions.assertTrue(author.get() !=null);
-        Assertions.assertEquals(2, author.get().getBook().size());
-        Assertions.assertEquals(2, author.get().getBook().get(0).getSheets().size());
+        Assertions.assertTrue(author.get(0) !=null);
+        Assertions.assertEquals(2, author.get(0).getBook().size());
+//        Assertions.assertEquals(2, author.get().getBook().get(0).getSheets().size());
     }
 
 }

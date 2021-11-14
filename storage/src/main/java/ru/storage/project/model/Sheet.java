@@ -22,6 +22,6 @@ public class Sheet {
 
     String content;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     Book book;
 }

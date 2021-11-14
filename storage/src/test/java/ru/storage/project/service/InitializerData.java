@@ -2,7 +2,6 @@ package ru.storage.project.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 import ru.storage.project.model.Author;
 import ru.storage.project.model.Book;
 import ru.storage.project.model.Sheet;
@@ -11,7 +10,6 @@ import ru.storage.project.repository.BookRepository;
 import ru.storage.project.repository.SheetRepository;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Component
@@ -23,8 +21,6 @@ public class InitializerData implements Initializer{
     private BookRepository bookRepository;
     @Autowired
     private SheetRepository sheetRepository;
-    @Autowired
-    private ServiceBook serviceBook;
 
     public AuthorRepository getAuthorRepository() {
         return authorRepository;
@@ -38,9 +34,7 @@ public class InitializerData implements Initializer{
         return sheetRepository;
     }
 
-    public ServiceBook getServiceBook() {
-        return serviceBook;
-    }
+
 
     public Book getBook() {
         return book;
@@ -229,6 +223,4 @@ public class InitializerData implements Initializer{
     public void clearData() {
         authorRepository.deleteAll();
     }
-
-
 }
