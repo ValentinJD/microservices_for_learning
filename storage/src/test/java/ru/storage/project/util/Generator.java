@@ -5,7 +5,7 @@ import ru.storage.project.model.Book;
 public class Generator {
 
     public static String get() {
-        return String.format("%s%s%s", "AA-", String.format("%04d-", orgId++), add());
+        return String.format("%s%s%s", "AA-", String.format("%04d-", orgId), add());
     }
 
     static int add() {

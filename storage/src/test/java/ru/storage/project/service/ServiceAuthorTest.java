@@ -41,14 +41,13 @@ public class ServiceAuthorTest {
     }
 
     @Test
-    @DisplayName("Найти автора по имени c книгами и контентом")
+    @DisplayName("Найти автора по имени")
     public void test2() {
 
      List<Author> author = serviceAuthor.getAuthorWithBook();
 
         Assertions.assertTrue(author.get(0) !=null);
         Assertions.assertEquals(2, author.get(0).getBook().size());
-//        Assertions.assertEquals(2, author.get().getBook().get(0).getSheets().size());
     }
 
 }

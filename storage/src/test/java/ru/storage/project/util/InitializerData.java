@@ -2,6 +2,8 @@ package ru.storage.project.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ru.storage.project.model.Price;
+import ru.storage.project.repository.PriceRepository;
 import ru.storage.project.util.Initializer;
 import ru.storage.project.model.Author;
 import ru.storage.project.model.Book;
@@ -22,6 +24,8 @@ public class InitializerData implements Initializer {
     private BookRepository bookRepository;
     @Autowired
     private SheetRepository sheetRepository;
+    @Autowired
+    private PriceRepository priceRepository;
 
     public AuthorRepository getAuthorRepository() {
         return authorRepository;
@@ -73,10 +77,17 @@ public class InitializerData implements Initializer {
         Author author = new Author();
         author.setName("Пушкин А.С.");
 
+
+
+
         book = Book.builder()
                 .nameBook("Евгений Онегин")
                 .author(author)
                 .humanReadableId(Generator.get())
+                /*.price(Price.builder()
+                        .price(50)
+                        .book(book)
+                        .build())*/
                 .build();
 
         Sheet sheet1 = Sheet.builder()
@@ -94,10 +105,16 @@ public class InitializerData implements Initializer {
         list.add(sheet2);
         book.setSheets(list);
 
+
+
         book2 = Book.builder()
                 .nameBook("Барышня-Крестьянка")
                 .author(author)
                 .humanReadableId(Generator.get())
+               /* .price(Price.builder()
+                        .price(100)
+                        .book(book2)
+                        .build())*/
                 .build();
 
         Sheet sheet3 = Sheet.builder()
@@ -120,16 +137,36 @@ public class InitializerData implements Initializer {
         listBook.add(book2);
         author.setBook(listBook);
 
+        Price price1 = Price.builder()
+                .price(50)
+                .book(book)
+                .build();
+
+        book.setPrice(price1);
+
+        Price price2 = Price.builder()
+                .price(100)
+                .book(book2)
+                .build();
+
+        book2.setPrice(price2);
+
         authorRepository.save(author);
 
         Author author2 = Author.builder()
                 .name("Толстой Л.Н.")
                 .build();
 
+
+
         book3 = Book.builder()
                 .nameBook("АННА КАРЕНИНА")
                 .author(author2)
                 .humanReadableId(Generator.get())
+                /*.price(Price.builder()
+                        .price(150)
+                        .book(book3)
+                        .build())*/
                 .build();
 
         Sheet sheet5 = Sheet.builder()
@@ -147,10 +184,16 @@ public class InitializerData implements Initializer {
         list3.add(sheet6);
         book3.setSheets(list3);
 
+
+
         book4 = Book.builder()
                 .nameBook("ВОЙНА И МИР. ТОМ 1")
                 .author(author2)
                 .humanReadableId(Generator.get())
+                /*.price(Price.builder()
+                        .price(200)
+                        .book(book4)
+                        .build())*/
                 .build();
 
         Sheet sheet7 = Sheet.builder()
@@ -173,16 +216,36 @@ public class InitializerData implements Initializer {
         listBook3.add(book4);
         author2.setBook(listBook3);
 
+        Price price3 = Price.builder()
+                .price(150)
+                .book(book3)
+                .build();
+
+        book3.setPrice(price3);
+
+        Price price4 = Price.builder()
+                .price(200)
+                .book(book4)
+                .build();
+
+        book4.setPrice(price4);
+
         authorRepository.save(author2);
 
         Author author3 = Author.builder()
                 .name("Есенин С.А.")
                 .build();
 
+
+
         book5 = Book.builder()
                 .nameBook("Белая черемуха под моим окном")
                 .author(author3)
                 .humanReadableId(Generator.get())
+                /*.price(Price.builder()
+                        .price(250)
+                        .book(book5)
+                        .build())*/
                 .build();
 
         Sheet sheet9 = Sheet.builder()
@@ -199,6 +262,13 @@ public class InitializerData implements Initializer {
         listbook4.add(book5);
         author3.setBook(listbook4);
 
+        Price price5 = Price.builder()
+                .price(250)
+                .book(book5)
+                .build();
+
+        book5.setPrice(price5);
+
         authorRepository.save(author3);
 
         Author author4 = Author.builder()
@@ -209,6 +279,10 @@ public class InitializerData implements Initializer {
                 .nameBook("Герой нашего времени")
                 .author(author4)
                 .humanReadableId(Generator.get())
+                /*.price(Price.builder()
+                        .price(300)
+                        .book(book6)
+                        .build())*/
                 .build();
 
         Sheet sheet10 = Sheet.builder()
@@ -223,6 +297,14 @@ public class InitializerData implements Initializer {
         List<Book> listbook5 = new ArrayList<>();
         listbook5.add(book6);
         author4.setBook(listbook5);
+
+        Price price6 = Price.builder()
+                .price(300)
+                .book(book6)
+                .build();
+
+        book6.setPrice(price6);
+
         authorRepository.save(author4);
     }
 
