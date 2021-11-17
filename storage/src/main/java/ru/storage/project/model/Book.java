@@ -28,7 +28,8 @@ public class Book {
     private String humanReadableId;
 
     // Поле для корректной сортировки по humanReadableId
-    @Formula(value = "substring(human_readable_id, 1,8) ||\n to_char(cast(substring(human_readable_id, 9) as int4), 'fm000000000000')")
+    @Formula(value = "substring(human_readable_id from '[A-ZА-Я]{2,20}-[0-9]{4,199}-') || " +
+            " to_char(cast(substring(human_readable_id from '-[0-9]{1,199}$') as int4), 'fm000000000000')")
     private String forSortingByHumanReadableId;
 
     @ManyToOne(fetch = FetchType.LAZY)
