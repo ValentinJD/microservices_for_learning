@@ -41,13 +41,6 @@ public class Controller extends DispatcherServlet {
     @Autowired
     ServiceBook serviceBook;
 
-/*
-    @GetMapping("/")
-    String getWelcomePage() {
-        return "index";
-    }
-*/
-
     @GetMapping("getPrice/{bookId}")
     Price getPrice(@PathVariable Integer bookId) {
 
