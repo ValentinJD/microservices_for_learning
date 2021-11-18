@@ -41,6 +41,13 @@ public class Controller extends DispatcherServlet {
     @Autowired
     ServiceBook serviceBook;
 
+/*
+    @GetMapping("/")
+    String getWelcomePage() {
+        return "index";
+    }
+*/
+
     @GetMapping("getPrice/{bookId}")
     Price getPrice(@PathVariable Integer bookId) {
 
@@ -75,7 +82,6 @@ public class Controller extends DispatcherServlet {
     Page<Book> searchBook(@RequestBody SearchDTO searchDTO) {
         return serviceBook.searchAndSort(searchDTO);
     }
-
     void initData() {
 
         Author author = new Author();
