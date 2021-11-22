@@ -15,11 +15,18 @@
       <jdbc-url>jdbc:postgresql://localhost:5432/shopbook</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="postgresInDocker" uuid="140440af-95cf-4cf0-b4aa-1d003ea4ad2b">
+    <data-source source="LOCAL" name="StorageInDocker" uuid="140440af-95cf-4cf0-b4aa-1d003ea4ad2b">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5434/shopbook</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="PriceDBInDocker" uuid="75b5caa6-7605-4e9b-8b41-122c576ae810">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5435/price</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
