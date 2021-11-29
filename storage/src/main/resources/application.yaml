@@ -1,12 +1,12 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/shopbook
+    url: jdbc:postgresql://localhost:5432/storage
     driverClassName: org.postgresql.Driver
     username: postgres
     password: postgres
   kafka:
     consumer:
-      group-id: shop.1
+      group-id: storage.1
   application:
     name: storage
   jpa:

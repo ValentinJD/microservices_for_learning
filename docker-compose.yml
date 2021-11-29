@@ -1,0 +1,53 @@
+version: '2'
+
+services:
+  storage:
+    image: 'storage-0.0.1:latest'
+    build:
+      context: storage
+    container_name: storage
+    depends_on:
+      - dbstorage
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://dbstorage:5432/storage
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
+    ports:
+      - "8081:8081"
+  dbstorage:
+    image: 'postgres:13.1-alpine'
+    container_name: dbstorage
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=storage
+    volumes:
+      - "db-data:/var/lib/postgresql/data"
+    ports:
+         - "5434:5432"
+  shop:
+    image: 'shop-0.0.1:latest'
+    build:
+      context: shop
+    container_name: shop
+    depends_on:
+      - dbshop
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://dbshop:5432/shop
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
+    ports:
+      - "8080:8080"
+  dbshop:
+      image: 'postgres:13.1-alpine'
+      container_name: dbshop
+      environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+        - POSTGRES_DB=shop
+      volumes:
+        - "db-data2:/var/lib/postgresql/data"
+      ports:
+        - "5435:5432"

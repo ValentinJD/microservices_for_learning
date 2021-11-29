@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/price
+    url: jdbc:postgresql://localhost:5432/shop
     driverClassName: org.postgresql.Driver
     username: postgres
     password: postgres
@@ -8,7 +8,7 @@ spring:
     consumer:
       group-id: shop.1
   application:
-    name: shopbook
+    name: shop
   jpa:
     open-in-view: false
     properties:
@@ -18,4 +18,4 @@ spring:
     show-sql: true
 
 server:
-  port: 8082
+  port: 8080

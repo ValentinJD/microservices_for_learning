@@ -21,5 +21,13 @@ public class AuthorSender {
         kafkaTemplate.send("author", msgId, mapper.writeValueAsString(author));
     }
 
+    @Autowired
+    ProducerBinding producerBinding;
+
+    @GetMapping("/test")
+    public void send() {
+        producerBinding.op("Hello");
+    }
+
 
 }

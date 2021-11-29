@@ -43,6 +43,11 @@ public class PriceController extends DispatcherServlet {
         priceRepository.saveAll(list);
     }
 
+    @GetMapping("/hell")
+    String hell() {
+        return "hell";
+    }
+
     @PostMapping("add")
     void addPrice(@RequestBody Price price) throws JsonProcessingException {
         priceRepository.save(price);
