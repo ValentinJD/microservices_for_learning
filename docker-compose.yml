@@ -20,6 +20,8 @@ services:
       - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
     ports:
       - "8081:8081"
+#    expose:
+#      - "8081"
   dbstorage:
     image: 'postgres:13.1-alpine'
     container_name: dbstorage
@@ -45,6 +47,8 @@ services:
       - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
     ports:
       - "8080:8080"
+#    expose:
+#      - "8080"
   dbshop:
       image: 'postgres:13.1-alpine'
       container_name: dbshop
