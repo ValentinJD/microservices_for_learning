@@ -56,12 +56,12 @@
             <version>${querydsl.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework.integration/spring-integration-core -->
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.integration/spring-integration-core &ndash;&gt;
         <dependency>
             <groupId>org.springframework.integration</groupId>
             <artifactId>spring-integration-core</artifactId>
             <version>5.5.5</version>
-        </dependency>
+        </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-stream-kafka -->
         <dependency>
