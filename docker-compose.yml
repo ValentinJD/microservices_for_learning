@@ -90,3 +90,4 @@ services:
 #        - ./:/etc/kafka
 
 #Порты для дебага 5001 5002
+# http://localhost:8081/storage

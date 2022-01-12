@@ -43,31 +43,26 @@ public class Controller extends DispatcherServlet {
 
     @GetMapping("getPrice/{bookId}")
     Price getPrice(@PathVariable Integer bookId) {
-
         return repository.getByBookId(bookId);
     }
 
     @GetMapping("list")
     List<Author> getList() {
-
         return authorRepository.findAll();
     }
 
     @GetMapping("author/{id}")
     Author getAuthor(@PathVariable Long id) {
-
         return authorRepository.getAuthorById(id);
     }
 
     @GetMapping("book/all")
     List<Book> getBook() {
-
         return bookRepository.findAll();
     }
 
     @GetMapping("sheet/all")
     List<Sheet> getSheet() {
-
         return sheetRepository.findAll();
     }
 
