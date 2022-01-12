@@ -8,11 +8,11 @@
       <jdbc-url>jdbc:postgresql://localhost:5432/price</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="shopbook" uuid="f2e14508-77c6-478c-aa2d-1c0f9bae57cb">
+    <data-source source="LOCAL" name="storage" uuid="f2e14508-77c6-478c-aa2d-1c0f9bae57cb">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/shopbook</jdbc-url>
+      <jdbc-url>jdbc:postgresql://localhost:5432/storage</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
     <data-source source="LOCAL" name="dockerStorage" uuid="bd7c8fe8-8b36-4ab6-af8b-98518857b5f8">

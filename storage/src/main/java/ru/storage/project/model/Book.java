@@ -32,7 +32,7 @@ public class Book {
             " to_char(cast(substring(human_readable_id from '-[0-9]{1,199}$') as int4), 'fm000000000000')")
     private String forSortingByHumanReadableId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Author author;
 
     @JsonIgnore

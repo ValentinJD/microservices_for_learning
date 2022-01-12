@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ViewController {
 
-    @GetMapping("/")
+    @GetMapping("/hello")
     String hello() {
-        return "index.html";
+        return "start.html";
     }
 }
