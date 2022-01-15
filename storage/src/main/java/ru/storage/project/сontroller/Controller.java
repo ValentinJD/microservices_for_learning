@@ -1,5 +1,6 @@
 package ru.storage.project.сontroller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.DispatcherServlet;
@@ -12,16 +13,16 @@ import ru.storage.project.repository.AuthorRepository;
 import ru.storage.project.repository.BookRepository;
 import ru.storage.project.repository.PriceRepository;
 import ru.storage.project.repository.SheetRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import ru.storage.project.service.ServiceBook;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
-public class Controller extends DispatcherServlet {
+public class Controller
+        extends DispatcherServlet
+{
 
     @Override
     public void init(ServletConfig config) throws ServletException {
