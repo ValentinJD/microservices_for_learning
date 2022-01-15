@@ -13,7 +13,6 @@ import ru.shop.book.repository.PriceRepository;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import java.sql.ClientInfoStatus;
 import java.util.Arrays;
 import java.util.List;
 
@@ -43,9 +42,9 @@ public class PriceController extends DispatcherServlet {
         priceRepository.saveAll(list);
     }
 
-    @GetMapping("/hell")
-    String hell() {
-        return "hell";
+    @GetMapping("/all")
+    public List<Price> getAll() {
+        return priceRepository.findAll();
     }
 
     @PostMapping("add")

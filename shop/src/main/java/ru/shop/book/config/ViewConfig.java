@@ -7,15 +7,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Configuration
-public class ViewConfig  {
-/*    *//**
+public class ViewConfig extends WebMvcConfigurerAdapter implements WebMvcConfigurer  {
+    /**
      * redirect a user to the welcome page when he visits tha app without a
      * destination url.
-     *//*
+     */
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("forward:/index.html");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
         super.addViewControllers(registry);
-    }*/
+    }
 }
