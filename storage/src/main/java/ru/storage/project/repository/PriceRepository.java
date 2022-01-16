@@ -5,7 +5,10 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import ru.storage.project.model.Price;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 public interface PriceRepository extends JpaRepository<Price, Integer>, JpaSpecificationExecutor<Price>,
         QuerydslPredicateExecutor<Price> {
-    Price getByBookId(Long bookId);
+
+    List<Price> getByBookId(Long bookId);
 }

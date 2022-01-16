@@ -21,7 +21,7 @@ public class PriceController {
     @Operation(summary = "Получение цены", description = "Позволяет получить цену книги")
     Price getPrice(@PathVariable
                    @Parameter(description = "Идентификатор книги") Long bookId) {
-        return priceRepository.getByBookId(bookId);
+        return priceRepository.getByBookId(bookId).get(0);
     }
 
 }
