@@ -1,11 +1,9 @@
 package ru.shop.book.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.DispatcherServlet;
 import ru.shop.book.model.Price;
 import ru.shop.book.producer.PriceSender;
@@ -17,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
+@RequestMapping("/price")
 public class PriceController extends DispatcherServlet {
 
     @Autowired
@@ -42,11 +41,13 @@ public class PriceController extends DispatcherServlet {
         priceRepository.saveAll(list);
     }
 
+    @Operation(summary = "Список цен", description = "Информация по ценам")
     @GetMapping("/all")
     public List<Price> getAll() {
         return priceRepository.findAll();
     }
 
+    @Operation(summary = "Цена книги", description = "Добавление цены книги")
     @PostMapping
     void addPrice(@RequestBody Price price) throws JsonProcessingException {
         priceRepository.save(price);

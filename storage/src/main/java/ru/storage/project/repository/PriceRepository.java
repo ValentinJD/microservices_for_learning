@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PriceRepository extends JpaRepository<Price, Integer>, JpaSpecificationExecutor<Price>,
         QuerydslPredicateExecutor<Price> {
-    Price getByBookId(Integer bookId);
+    Price getByBookId(Long bookId);
 }

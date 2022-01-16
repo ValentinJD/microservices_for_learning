@@ -1,29 +1,34 @@
 package ru.storage.project.сontroller;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.DispatcherServlet;
-import ru.storage.project.dto.SearchDTO;
 import ru.storage.project.model.Author;
 import ru.storage.project.model.Book;
-import ru.storage.project.model.Price;
 import ru.storage.project.model.Sheet;
 import ru.storage.project.repository.AuthorRepository;
 import ru.storage.project.repository.BookRepository;
 import ru.storage.project.repository.PriceRepository;
 import ru.storage.project.repository.SheetRepository;
-import ru.storage.project.service.ServiceBook;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import java.util.List;
 
-@Api(value = "Базовый контроллер")
+@Hidden
 @RestController
-public class Controller extends DispatcherServlet{
+@RequestMapping("/")
+public class InitController extends DispatcherServlet{
+
+    @Autowired
+    private AuthorRepository authorRepository;
+    @Autowired
+    BookRepository bookRepository;
+    @Autowired
+    SheetRepository sheetRepository;
+    @Autowired
+    PriceRepository priceRepository;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -31,48 +36,6 @@ public class Controller extends DispatcherServlet{
         initData();
     }
 
-    @Autowired
-    AuthorRepository authorRepository;
-    @Autowired
-    BookRepository bookRepository;
-    @Autowired
-    SheetRepository sheetRepository;
-    @Autowired
-    PriceRepository repository;
-
-    @Autowired
-    ServiceBook serviceBook;
-
-    @GetMapping("getPrice/{bookId}")
-    @ApiOperation(value = "Цена книги")
-    Price getPrice(@PathVariable Integer bookId) {
-        return repository.getByBookId(bookId);
-    }
-
-    @GetMapping("list")
-    List<Author> getList() {
-        return authorRepository.findAll();
-    }
-
-    @GetMapping("author/{id}")
-    Author getAuthor(@PathVariable Long id) {
-        return authorRepository.getAuthorById(id);
-    }
-
-    @GetMapping("book/all")
-    List<Book> getBook() {
-        return bookRepository.findAll();
-    }
-
-    @GetMapping("sheet/all")
-    List<Sheet> getSheet() {
-        return sheetRepository.findAll();
-    }
-
-    @PostMapping
-    Page<Book> searchBook(@RequestBody SearchDTO searchDTO) {
-        return serviceBook.searchAndSort(searchDTO);
-    }
     void initData() {
 
         Author author = new Author();
