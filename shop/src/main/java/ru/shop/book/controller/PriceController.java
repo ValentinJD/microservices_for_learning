@@ -47,7 +47,7 @@ public class PriceController extends DispatcherServlet {
         return priceRepository.findAll();
     }
 
-    @PostMapping("add")
+    @PostMapping
     void addPrice(@RequestBody Price price) throws JsonProcessingException {
         priceRepository.save(price);
         priceSender.sendOrder(price.getBookId().toString(), price);

@@ -1,5 +1,7 @@
 package ru.storage.project.сontroller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
@@ -19,10 +21,9 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import java.util.List;
 
+@Api(value = "Базовый контроллер")
 @RestController
-public class Controller
-        extends DispatcherServlet
-{
+public class Controller extends DispatcherServlet{
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -43,6 +44,7 @@ public class Controller
     ServiceBook serviceBook;
 
     @GetMapping("getPrice/{bookId}")
+    @ApiOperation(value = "Цена книги")
     Price getPrice(@PathVariable Integer bookId) {
         return repository.getByBookId(bookId);
     }
