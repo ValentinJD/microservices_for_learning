@@ -15,7 +15,7 @@ import java.util.Map;
 @Configuration
 public class KafkaProducerConfig {
 
-   /* @Value(value = "${kafka.bootstrapAddress}")
+    @Value(value = "${kafka.bootstrapAddress}")
     private String bootstrapAddress;
 
     @Bean
@@ -36,5 +36,5 @@ public class KafkaProducerConfig {
     @Bean
     public KafkaTemplate<String, String> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
-    }*/
+    }
 }

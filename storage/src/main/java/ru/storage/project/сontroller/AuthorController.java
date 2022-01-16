@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.storage.project.model.Author;
 import ru.storage.project.repository.AuthorRepository;
 
-import javax.validation.constraints.Min;
+
 import java.util.List;
 
 @RestController
@@ -27,7 +27,7 @@ public class AuthorController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Получение данных автора", description = "Информация по автору")
-    Author getAuthor(@PathVariable @Min(1) @Parameter(description = "Идентификатор автора")Long id) {
+    Author getAuthor(@PathVariable  @Parameter(description = "Идентификатор автора")Long id) {
         return authorRepository.getAuthorById(id);
     }
 }
